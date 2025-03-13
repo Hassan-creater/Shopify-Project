@@ -501,6 +501,12 @@
   .h-9 {
     height: calc(var(--spacing) * 9);
   }
+  .h-\[30em\] {
+    height: 30em;
+  }
+  .h-full {
+    height: 100%;
+  }
   .h-screen {
     height: 100vh;
   }
@@ -512,6 +518,9 @@
   }
   .min-h-screen {
     min-height: 100vh;
+  }
+  .w-1 {
+    width: calc(var(--spacing) * 1);
   }
   .w-1\/2 {
     width: calc(1/2 * 100%);
@@ -530,6 +539,9 @@
   }
   .w-screen {
     width: 100vw;
+  }
+  .max-w-\[50\%\] {
+    max-width: 50%;
   }
   .max-w-md {
     max-width: var(--container-md);
@@ -922,6 +934,12 @@
   }
   .justify-items-stretch {
     justify-items: stretch;
+  }
+  .gap-3 {
+    gap: calc(var(--spacing) * 3);
+  }
+  .gap-4 {
+    gap: calc(var(--spacing) * 4);
   }
   .gap-6 {
     gap: calc(var(--spacing) * 6);
@@ -1456,6 +1474,9 @@
   .text-xl {
     font-size: var(--text-xl);
     line-height: var(--tw-leading, var(--text-xl--line-height));
+  }
+  .text-\[2em\] {
+    font-size: 2em;
   }
   .leading-none {
     --tw-leading: 1;
