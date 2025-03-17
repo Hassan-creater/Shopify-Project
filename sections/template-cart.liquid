@@ -1,0 +1,10 @@
+<div>
+  {% if cart.item_count > 0 %}
+    {% else %}
+        <div class="w-full flex flex-col gap-[2em]  p-24 text-center">
+            <h1 class="text-4xl">Your cart is Empty</h1>
+            <a href="{{routes.all_products_collection_url}}" class="mx-auto px-7 py-2 rounded-sm hover:text-blue-500 text-white hover:bg-white duration-300  bg-blue-500 ">Continue Shopping</a>
+        </div>
+    
+  {% endif %}
+</div>
