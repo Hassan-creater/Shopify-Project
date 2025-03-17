@@ -1,10 +1,81 @@
 <div>
-  {% if cart.item_count > 0 %}
-    {% else %}
-        <div class="w-full flex flex-col gap-[2em]  p-24 text-center">
-            <h1 class="text-4xl">Your cart is Empty</h1>
-            <a href="{{routes.all_products_collection_url}}" class="mx-auto px-7 py-2 rounded-sm hover:text-blue-500 text-white hover:bg-white duration-300  bg-blue-500 ">Continue Shopping</a>
+  {% if cart.item_count == 0 %}
+    <div class="w-[70%] border-b-[1px] border-black p-2 mx-auto mt-4 flex justify-between items-center">
+        <p class="text-[1.2em]">Your Cart</p>
+        <a class="px-4 py-2 bg-blue-500 text-white hover:bg-white hover:text-blue-500  duration-300 rounded-sm " href="{{routes.all_products_collection_url}}">Continue Shopping</a>
+    </div>
+    <div class="container max-w-[75%] mt-3 mx-auto">
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Products
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Quantity
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Total Price
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            <img src="{{article.image}}" alt="" width="" height="">
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            2
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold">
+                            $2,398.00
+                        </td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            Wireless Mouse
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            5
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold">
+                            $149.95
+                        </td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            Mechanical Keyboard
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            3
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold">
+                            $297.00
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot class="bg-gray-50">
+                    <tr>
+                        <td class="px-6 py-4 text-sm font-medium text-gray-900">
+                            Total
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-500">
+                            10 items
+                        </td>
+                        <td class="px-6 py-4 text-sm font-semibold text-gray-900">
+                            $2,844.95
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
-    
+    </div>
+  {% else %}
+    <div class="w-full flex flex-col gap-[2em]  p-24 text-center">
+      <h1 class="text-4xl">Your cart is Empty</h1>
+      <a href="{{routes.all_products_collection_url}}" class="mx-auto px-7 py-2 rounded-sm hover:text-blue-500 text-white hover:bg-white duration-300  bg-blue-500 ">Continue Shopping</a>
+    </div>
+
   {% endif %}
 </div>
