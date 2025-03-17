@@ -76,7 +76,7 @@
 
         {% if paginate.pages > 1 %}
           <div class="mt-[1.5em]">
-            {{ paginate | default_pagination }}
+            {% render 'pagination' , page: paginate %}
           </div>
 
 

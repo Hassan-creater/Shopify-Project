@@ -1,0 +1,41 @@
+{% if page.pages > 1 %}
+    <nav class='flex justify-center gap-2 my-8'>
+        {% if page.previous %}
+            
+            <a class="px-7 py-2 border-[1.5px] border-blue-500 rounded-[5px] hover:bg-blue-500 duration-300 hover:text-white" href="{{page.previous.url}}">{{page.previous.title}}</a>
+        {% endif %}
+
+        {% comment %} {% for part in page.parts %}
+            {% if part.is_link %}
+                <a class="px-7 py-2 border-[1.5px] border-blue-500 rounded-[5px] hover:bg-blue-500 duration-300 hover:text-white" href="{{part.url}}">{{part.tite}}</a>
+            {% endif %}
+            {% else %}
+            <span class="px-7 py-2 border-[1.5px] border-blue-500 text-black rounded-[5px] bg-blue-500  ">{{part.title}}</span>
+        {% endfor %} {% endcomment %}
+
+
+        {% for part in page.parts %}
+            {% if part.is_link %}
+                <a class="px-4 py-2 border border-blue-500 rounded-md hover:bg-blue-500 hover:text-white transition-colors duration-300" href="{{ part.url }}">
+                    {{ part.title }}
+                </a>
+            {% else %}
+                {% if part.title == page.current_page %}
+                    <span class="px-4 py-2 border border-blue-500 rounded-md bg-blue-500 text-white cursor-default">
+                        {{ part.title }}
+                    </span>
+                {% else %}
+                    <span class="px-4 py-2 border border-blue-500 rounded-md cursor-default">
+                        {{ part.title }}
+                    </span>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+        {% if page.next %}
+            
+            <a class="px-7 py-2 border-[1.5px] border-blue-500 rounded-[5px] hover:bg-blue-500 duration-300 hover:text-white" href="{{page.next.url}}">{{page.next.title}}</a>
+        {% endif %}
+    </nav>
+{% endif %}
+

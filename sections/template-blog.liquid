@@ -1,12 +1,78 @@
-{% paginate blog.articles by 3 %}
-    {% for article in blog.articles %}
-         <div>
-            {% if article.image %}
-                <img src="{{article.image | img_url : 'medium'}}" alt="{{article.image.alt}}" height=" " width="">
+<div class="py-8">
 
-                {% else %}
-                    {{'image' |  placeholder_svg_tag}}
-            {% endif %}
-         </div>
-    {% endfor %}
-{% endpaginate %}
+    {% paginate blog.articles by section.settings.number_of_blog_posts %}
+        <h1 class="text-center text-[2em] font-semibold">{{blog.title}}</h1>
+
+        <div class="p-[2em] w-full  flex justify-center items-center gap-3 ">
+            {% for article in blog.articles %}
+                
+                   <div class=" shadow-black shadow-sm  hover:scale-[1.02]  duration-300 w-[20em]  rounded-[10px] overflow-hidden">
+                    <div class="w-full h-60 bg-amber-400">
+                        {% if article.image %}
+                            <a href="{{article.url}}">
+                                <img  class="object-cover  w-full h-full  " src="{{article.image | img_url : 'medium'}}" alt="{{article.image.alt}}" height="100%" width="100%">
+                            </a>
+                           
+            
+                            {% else %}
+                                {{'image' |  placeholder_svg_tag  : 'object-cover'}}
+                        {% endif %}
+                    </div>
+
+                  
+                <div class="w-full text-center text-[1.5em] font-bold py-2">
+                    <h2>{{article.title}}</h2>
+                </div>
+                
+    
+
+                <div class="w-full p-3">
+                    {% if article.excerpt.size > 0 %}
+                    
+                        <p>{{article.excerpt |  strip_html |  truncatewords : 15}}</p>
+    
+                        {% else %}
+                            <p>{{article.content |  strip_html |  truncatewords: 10}}</p>
+                {% endif %}
+            
+                </div>
+
+                 
+                
+                   <a href="{{article.url}}">
+
+                       <p class="p-3 text-blue-500 hover:scale-[1.03] cursor-pointer duration-300" >
+                       Read More
+                     </p>
+                   </a>
+                   </div>
+
+
+                   
+   
+                      
+           {% endfor %}
+        </div>
+
+        {% render 'pagination' , page: paginate %}
+        
+    {% endpaginate %}
+</div>
+
+
+{% schema %}
+{
+    "name": "Blog",
+    "settings": [
+             {
+                "type": "range",
+                "id": "number_of_blog_posts",
+                "step": 1,
+                "min": 1,
+                "max": 5,
+                "label": "Blogs posts per page",
+                "default" : 1
+             }
+        ]
+}
+{% endschema %}
