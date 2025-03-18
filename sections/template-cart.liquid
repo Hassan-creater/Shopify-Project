@@ -1,120 +1,154 @@
 <div>
   {% if cart.item_count > 0 %}
     <div class="w-[60%] border-b-[1px] border-black p-2 mx-auto mt-4 flex justify-between items-center">
-        <p class="text-[1.2em]">Your Cart</p>
-        <a class="px-4 py-2 bg-blue-500 text-white hover:bg-white hover:text-blue-500  duration-300 rounded-sm " href="{{routes.all_products_collection_url}}">Continue Shopping</a>
+      <p class="text-[1.2em]">Your Cart</p>
+      <a class="px-4 py-2 bg-blue-500 text-white hover:bg-white hover:text-blue-500  duration-300 rounded-sm " href="{{routes.all_products_collection_url}}">Continue Shopping</a>
     </div>
 
-    <form action="{{routes.cart_url}}" method="POST" novalidate class=" flex justify-evenly items-center">
-        <div class="container max-w-[60%] h-[25.5em]  mt-3 ml-10 overflow-x-hidden overflow-y-scroll scrollbar hide_scrollbar">
+    <form
+      action="{{routes.cart_url}}"
+      method="POST"
+      novalidate
+      class=" flex justify-evenly items-center">
+      <div class="container max-w-[60%] h-[25.5em]  mt-3 ml-10 overflow-x-hidden overflow-y-scroll scrollbar hide_scrollbar">
         <div class="bg-white rounded-lg shadow overflow-hidden ">
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Products
-                        </th>
-                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Quantity
-                        </th>
-                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Total Price
-                        </th>
-                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
-                            Action
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                    {% for item in cart.items %}
-                        
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-center items-center gap-2 flex-col">
-                                <div>
-                                    {% if item.image %}
-                                    
-                                    
-                                        <img class="w-14 h-14 object-cover border" src="{{item.image |  img_url: 'small'}}" alt="{{item.title |  escape}}" width="" height=""/>
-                                        {% else %}
-                                        {{'product-1' |  placeholder_svg_tag : "w-20 h-20 object-cover border"}}
-                                    {% endif %}
-                                </div>
-                               
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Products
+                </th>
+                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Quantity
+                </th>
+                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Total Price
+                </th>
+                <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              {% for item in cart.items %}
 
-                                <div class="flex flex-col gap-1">
-                                    <a href="{{item.url}}">{{item.product.title |  truncatewords: 5}}</a>
-                                    <span class="text-sm text-gray-400 leading-1">{{item.variant.title}}</span>
-    
-                                    
-                                </div>
-                            </td>
+                <tr class="hover:bg-gray-50">
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-center items-center gap-2 flex-col">
+                    <div>
+                      {% if item.image %}
 
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                               <input type="number" name="updates[]" value="{{item.quantity}}" id="update_{{forloop.index}}" class="border p-2 w-[5em] rounded-sm border-blue-500 focus:outline-none" min="1">
-                            </td>
 
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold text-center">
-                                {{item.final_line_price |  money}}
-                            </td>
+                        <img
+                          class="w-14 h-14 object-cover border"
+                          src="{{item.image |  img_url: 'small'}}"
+                          alt="{{item.title |  escape}}"
+                          width=""
+                          height="" />
+                      {% else %}
+                        {{ 'product-1' | placeholder_svg_tag: "w-20 h-20 object-cover border" }}
+                      {% endif %}
+                    </div>
 
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold flex justify-center items-center">
-                                <a class=" px-7 py-2 bg-red-500 rounded-sm text-white hover:text-red-500 hover:bg-white duration-300" href="{{routes.cart_change_url}}?line={{forloop.index}}&quantity=0">Remove item</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    
-                   
-                    
-                </tbody>
-               
-            </table>
 
-            
+                    <div class="flex flex-col gap-1">
+                      <a href="{{item.url}}">{{ item.product.title | truncatewords: 5 }}</a>
+                      <span class="text-sm text-gray-400 leading-1">{{ item.variant.title }}</span>
+
+
+                    </div>
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                    <input
+                      type="number"
+                      name="updates[]"
+                      value="{{item.quantity}}"
+                      id="update_{{forloop.index}}"
+                      class="border p-2 w-[5em] rounded-sm border-blue-500 focus:outline-none"
+                      min="1">
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold text-center">
+                    {{ item.final_line_price | money }}
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold flex justify-center items-center">
+                    <a class=" px-7 py-2 bg-red-500 rounded-sm text-white hover:text-red-500 hover:bg-white duration-300" href="{{routes.cart_change_url}}?line={{forloop.index}}&quantity=0">Remove item</a>
+                  </td>
+                </tr>
+              {% endfor %}
+
+
+            </tbody>
+
+          </table>
+
+
         </div>
-    </div>
-       <div class="w-[25%] h-[25em] p-3  flex flex-col justify-end items-center gap-2">
-        <div class="w-full p-2  text-center">
-            <h1>Subtotal: <span class="font-bold text-[1.2em] underline"> {{cart.total_price |  money}}</span> </h1>
-        </div>
-        <div class="w-full p-2  text-center hover:bg-blue-500 hover:text-white text-blue-500 border-[1px] duration-300 border-blue-500 rounded-sm cursor-pointer">
-            <button class="w-full h-full cursor-pointer" type="submit" name="update">Update</button>
-        </div>
-        <div class="text-center w-full p-2 duration-300 rounded-sm bg-blue-500 text-white hover:bg-white hover:text-blue-500 cursor-pointer">
-            <button class="w-full h-full cursor-pointer" type="submit" name="checkout">Checkout</button>
-        </div>
-       </div>
-    </form>
-    
-  {% else %}
-    <div class="w-full flex flex-col gap-[2em]  p-24 text-center">
-      <h1 class="text-4xl">Your cart is Empty</h1>
-      <a href="{{routes.all_products_collection_url}}" class="mx-auto px-7 py-2 rounded-sm hover:text-blue-500 text-white hover:bg-white duration-300  bg-blue-500 ">Continue Shopping</a>
-    </div>
+      </div>
 
-  {% endif %}
-</div>
+      <div class="w-[25%] h-[25em] p-3  flex flex-col justify-end items-center gap-2">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when "subtota" %}
+              <div class="w-full p-2  text-center">
+                <h1>Subtotal:
+                  <span class="font-bold text-[1.2em] underline">
+                    {{ cart.total_price | money }}</span>
+                </h1>
+              </div>
+
+            {% when "update_button" %}
+              <div class="w-full p-2  text-center hover:bg-blue-500 hover:text-white text-blue-500 border-[1px] duration-300 border-blue-500 rounded-sm cursor-pointer">
+                <button
+                  class="w-full h-full cursor-pointer"
+                  type="submit"
+                  name="update">Update</button>
+              </div>
+            {% when "checkout_button" %}
+              <div class="text-center w-full p-2 duration-300 rounded-sm bg-blue-500 text-white hover:bg-white hover:text-blue-500 cursor-pointer">
+                <button
+                  class="w-full h-full cursor-pointer"
+                  type="submit"
+                  name="checkout">Checkout</button>
+              </div>
+          {% else %}
+
+            {% endcase %}
+
+          {% endfor %}
 
 
-{% schema %}
-{
-    "name": "Template Cart",
-     "blocks": [
+        </div>
+      </form>
+
+    {% else %}
+      <div class="w-full flex flex-col gap-[2em]  p-24 text-center">
+        <h1 class="text-4xl">Your cart is Empty</h1>
+        <a href="{{routes.all_products_collection_url}}" class="mx-auto px-7 py-2 rounded-sm hover:text-blue-500 text-white hover:bg-white duration-300  bg-blue-500 ">Continue Shopping</a>
+      </div>
+
+    {% endif %}
+  </div>
+
+
+  {% schema %}
+    {
+      "name": "Template Cart",
+      "blocks": [
         {
-            "type": "subtotal",
-            "name" : "Subtotal",
-            "limit": 1
-        },
-        {
-            "type": "update_button",
-            "name" : "Update Button",
-            "limit": 1
-        },
-
-        {
-            "type": "checkout_button",
-            "name" : "Checkout Button",
-            "limit": 1
+          "type": "subtotal",
+          "name": "Subtotal",
+          "limit": 1
+        }, {
+          "type": "update_button",
+          "name": "Update Button",
+          "limit": 1
+        }, {
+          "type": "checkout_button",
+          "name": "Checkout Button",
+          "limit": 1
         }
-     ]
-}
-{% endschema %}
+      ]
+    }
+  {% endschema %}
