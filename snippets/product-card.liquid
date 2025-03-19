@@ -1,0 +1,35 @@
+<div class="w-[17em] bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col group">
+        {% if product.featured_image %}
+          <div class="relative h-[15em] w-full overflow-hidden"> 
+            <a href="{{product.url}}">
+                <img 
+              src="{{ product.featured_image | img_url: '500x500' }}" 
+              alt="{{ product.featured_image.alt }}" 
+              class="w-full h-full group-hover:scale-[1.1] duration-300 object-contain p-2"
+              width=""
+              height=""
+              loading="lazy"
+            >
+            </a>
+            
+          </div>
+          {% else %}
+          <div class="relative h-[15em] w-full overflow-hidden">
+            <a href="{{product.url}}">
+                {{'product-1' |  placeholder_svg_tag : "w-full h-full object-contain p-2 group-hover:scale-[1.1] duration-300" }}
+            </a>
+           
+          </div>
+            
+        {% endif %}
+        
+        <div class="p-2.5 flex-1 flex flex-col justify-between"> <!-- Compact content area -->
+          <div>
+            <span class="text-xs text-gray-500 font-medium mb-1 block">{{ product.vendor }}</span>
+            <a href="{{ product.url }}" class="text-base font-medium text-gray-700 hover:text-blue-600 line-clamp-2 mb-1.5">
+              {{ product.title }}
+            </a>
+          </div>
+          <p class="text-lg font-bold text-gray-900 mt-1.5">{{ product.price | money }}</p>
+        </div>
+      </div>
