@@ -1,0 +1,47 @@
+<div class="flex flex-col gap-[2em] py-5" >
+    <h1 class="text-center text-3xl font-semibold">{{section.settings.title}}</h1>
+    <div class="flex justify-center items-center gap-4 flex-wrap">
+        {% for product in section.settings.featured_collection.products limit: section.settings.limit_products %}
+            {% render 'product-card' , product : product %}
+
+            {% else %}
+                {% for item in (1..4) %}
+                    {% render 'featured-placeholder' %}
+                {% endfor %}
+       {% endfor %}
+    </div>
+   
+</div>
+
+
+{% schema %}
+{
+    "name": "Featured Collection",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "default" : "Featured Collection",
+            "label": "Title"
+        },
+        {
+            "type": "collection",
+            "id": "featured_collection",
+            "label": "Collection"
+        },
+        {
+            "type": "range",
+            "min": 4,
+            "max": 12,
+            "default": 4,
+            "id": "limit_products",
+            "label": "Products Limit to Show"
+        }
+        ],
+        "presets": [
+           {
+            "name": "Featured Collection"
+           } 
+        ]
+}
+{% endschema %}
