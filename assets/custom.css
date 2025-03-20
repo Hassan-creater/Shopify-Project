@@ -5,3 +5,13 @@
 .hide_scrollbar{
     scroll-behavior: smooth;
 }
+
+
+
+.hide_product_scrollbar::-webkit-scrollbar{
+    display: none;
+}
+
+.hide_product_scrollbar{
+    scroll-behavior: smooth;
+}

@@ -1,0 +1,100 @@
+
+
+
+
+<div class="w-[100%] lg:w-[70%] bg-amber-50  mx-auto flex lg:flex-row flex-col justify-between items-center">
+    <div class="w-[100%]  lg:w-[48%] hide_product_scrollbar lg:h-[31em] overflow-y-scroll p-2 bg-red-500 ">
+        <div class="hidden  w-full sm:flex flex-col gap-3">
+            {% for media in product.media %}
+                <div class= " w-full h-[20em] bg-amber-500 rounded-sm overflow-hidden">
+                    {% render 'product-media' , media:media %}
+                </div>
+           {% endfor %}
+        </div>
+
+
+
+
+
+        {% comment %} <div class="  w-full h-[20em] flex ">
+            {% for media in product.media %}
+                <div class= " w-full h-full bg-amber-500 rounded-sm overflow-hidden">
+                    {% render 'product-media' , media:media %}
+                </div>
+           {% endfor %}
+        </div> {% endcomment %}
+        <div class="swiper w-full h-[22em] block sm:hidden">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+        {% for media in product.media %}
+            <!-- Slides -->
+            <div class="swiper-slide w-full h-[20em] bg-amber-500 rounded-sm overflow-hidden flex-shrink-0">
+                {% render 'product-media', media:media %}
+            </div>
+        {% endfor %}
+    </div>
+    
+    <!-- Pagination -->
+    <div class="swiper-pagination"></div>
+
+    <!-- Navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>
+       
+    </div>
+    <div class="lg:w-[48%] w-full p-2 bg-blue-400">
+        <p>{{product.vendor}}</p>
+        <h1 class="text-3xl">{{product.title}}</h1>
+        <div class="flex mt-3 gap-3 justify-start items-center">
+            {% assign price_p = product.selected_or_first_available_variant %}
+            <p class="line-through text-gray-500">{{price_p.compare_at_price |  money}}</p>
+            <p>{{price_p.price | money}}</p>
+
+            {% if price_p.compare_at_price > price_p.price %}
+                <div class="px-5 py-1.5 rounded-lg bg-red-500">Sale</div>
+                
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+ <style>
+    .swiper-button-prev, .swiper-button-next {color:blue; top:auto !important; height: 0px; }
+    .swiper-button-prev::after , .swiper-button-next::after{font-size: :20px;}
+ </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        direction: 'horizontal',
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 30,
+        
+        // If you need pagination
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        
+        // And if we need scrollbar
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+        
+        // Enable autoplay (optional)
+        autoplay: {
+            delay: 10000,
+        },
+    });
+});
+</script>
+

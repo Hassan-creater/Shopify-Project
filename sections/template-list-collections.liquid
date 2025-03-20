@@ -1,0 +1,51 @@
+<div class="w-full p-4  mt-4">
+  <h1 class="text-center text-2xl font-semibold">{{ section.settings.title }}</h1>
+  <div class="w-[80%] p-2 mx-auto  mt-2 flex justify-center items-center flex-wrap gap-4">
+
+      {% for collection in collections %}
+        <div class="w-[30%] p-2 bg-slate-200 rounded-sm hover:shadow-md hover:shadow-black hover:scale-[1.02] duration-500">
+            {% if collection.all_products_count > 0 %}
+                <a href="{{collection.url}}">
+                  <div class="w-full h-[20em] ">
+                      {% if collection.featured_image != blank %}
+                          {% assign collection_img = collection.featured_image %}
+                          {% else %}
+                              {% assign collection_img = collection.products.first.images %}
+                          
+                      {% endif %}
+                      <img src="{{collection_img |  img_url: 'medium'}}" alt="{{collection.title |  escape}}" width="" height="" class="w-full h-full object-cover hover:scale-[1.02] duration-300 rounded-sm hover:rounded-none ">
+                  </div>
+                </a>
+                 
+                <a href="{{collection.url}}">
+                    <div class="w-full pt-2 text-[1.1em] font-semibold text-center bg-blue-500 mt-1 text-white hover:text-blue-500 hover:bg-white duration-300">
+                    <h2>{{collection.title}}</h2>
+                </div>
+                </a>
+                
+      
+      
+              {% endif %}
+        </div>
+       
+
+
+      {% endfor %}
+   
+
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Collection List",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "default": "Collections",
+        "label": "Collection of Products"
+      }
+    ]
+  }
+{% endschema %}
