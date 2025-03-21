@@ -15,3 +15,15 @@
 .hide_product_scrollbar{
     scroll-behavior: smooth;
 }
+
+
+.product-information {
+    height: fit-content;
+    position: sticky;
+    top: 1.25rem; /* Corresponds to top-5 */
+    padding: 0.5rem; /* Corresponds to p-2 */
+  }
+
+  .fit-content{
+    height: fit-content;
+  }
