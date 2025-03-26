@@ -1,4 +1,4 @@
-<div class="max-w-[70%] p-2 mx-auto" x-data="{form:false}">
+<div x-cloak class="max-w-[70%] p-2 mx-auto" x-data="{form:false}">
     <div class="w-full flex justify-between border-b-[1px] py-4">
         <a class="px-[1em] py-0.5 bg-blue-500 text-white rounded-sm hover:bg-white flex justify-center items-center hover:text-blue-500 duration-300" href="{{routes.account_url}}">Back to Account</a>
 
@@ -21,56 +21,67 @@
             <div x-on:click="form=false" class="relative right-[1em] top-[1em]">{% render 'cross-arrow' %}</div>
         </div>
         
-        <form class="p-6 space-y-6">
+        {% form 'customer_address' , customer.new_address , class:'py-[2em] px-[2em] flex flex-col gap-[1em]' %}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- First Name -->
                 <div>
-                    <label for="first_name" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
-                    <input type="text" id="first_name" name="first_name" required 
+                    <label for="address_fname_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                    <input type="text" id="address_fname_{{form.id}}" name="address[first_name]"
+                     value="{{form.first_name}}"
+                     required 
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
                 
                 <!-- Last Name -->
                 <div>
-                    <label for="last_name" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
-                    <input type="text" id="last_name" name="last_name" required 
+                    <label for="address_lname_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                    <input type="text" id="address_lname_{{form.id}}" name="address[last_name]" required
+                       value="{{form.last_name}}" 
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
             </div>
             
             <!-- Address 1 -->
             <div>
-                <label for="address_1" class="block text-sm font-medium text-gray-700 mb-1">Address Line 1</label>
-                <input type="text" id="address_1" name="address_1" required 
+                <label for="address_address1_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">Address Line 1</label>
+                <input type="text" id="address_address1_{{form.id}}" name="address[address1]"
+                value="{{form.address1}}" 
+                required 
                     class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
             </div>
             
             <!-- Address 2 -->
             <div>
-                <label for="address_2" class="block text-sm font-medium text-gray-700 mb-1">Address Line 2 (Optional)</label>
-                <input type="text" id="address_2" name="address_2" 
+                <label for="address_address2_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">Address Line 2 (Optional)</label>
+                <input type="text" id="address_address2_{{form.id}}" name="address[address2]" 
+                    value="{{form.address2}}"
                     class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
             </div>
             
             <!-- Company -->
             <div>
-                <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company (Optional)</label>
-                <input type="text" id="company" name="company" 
+                <label for="address_company_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">Company (Optional)</label>
+                <input type="text" id="address_company_{{form.id}}" name="address[company]" 
+                    value="{{form.company}}"
                     class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- City -->
                 <div>
-                    <label for="city" class="block text-sm font-medium text-gray-700 mb-1">City</label>
-                    <input type="text" id="city" name="city" required 
+                    <label for="address_city_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">City</label>
+                    <input type="text" id="address_city_{{form.id}}" name="address[city]"
+                    value="{{form.city}}" 
+                    required 
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
                 
                 <!-- Zip/Postal Code -->
                 <div>
-                    <label for="zip" class="block text-sm font-medium text-gray-700 mb-1">Zip/Postal Code</label>
-                    <input type="text" id="zip" name="zip" required 
+                    <label for="address_zip_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">Zip/Postal Code</label>
+                    <input type="text"
+                    value="{{form.zip}}" 
+                    id="address_zip_{{form.id}}" name="address[zip]" required 
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
             </div>
@@ -78,10 +89,16 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Country -->
                 <div>
-                    <label for="country" class="block text-sm font-medium text-gray-700 mb-1">Country</label>
-                    <select id="country" name="country" required 
+                    <label for="address_country_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">Country</label>
+                    <select id="address_country_{{form.id}}" name="address[country]" 
+                    data-country-selector
+                    data-id="{{form.id}}"
+                    required 
+                        value="{{form.country}}"
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white">
-                        <option value="" disabled selected>Select a country</option>
+
+                        {{all_country_option_tags}}
+                        {% comment %} <option value="" disabled selected>Select a country</option>
                         <option value="US">United States</option>
                         <option value="CA">Canada</option>
                         <option value="UK">United Kingdom</option>
@@ -91,16 +108,16 @@
                         <option value="JP">Japan</option>
                         <option value="CN">China</option>
                         <option value="IN">India</option>
-                        <option value="BR">Brazil</option>
+                        <option value="BR">Brazil</option> {% endcomment %}
                     </select>
                 </div>
                 
                 <!-- Province/State -->
                 <div>
-                    <label for="province" class="block text-sm font-medium text-gray-700 mb-1">Province/State</label>
-                    <select id="province" name="province" required 
+                    <label for="address_province_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">Province/State</label>
+                    <select id="address_province_{{form.id}}" name="address[province]" required 
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white">
-                        <option value="" disabled selected>Select a province/state</option>
+                        {% comment %} <option value="" disabled selected>Select a province/state</option>
                         <!-- US States -->
                         <option value="AL">Alabama</option>
                         <option value="AK">Alaska</option>
@@ -113,16 +130,24 @@
                         <option value="AB">Alberta</option>
                         <option value="BC">British Columbia</option>
                         <option value="ON">Ontario</option>
-                        <option value="QC">Quebec</option>
+                        <option value="QC">Quebec</option> {% endcomment %}
                     </select>
                 </div>
             </div>
             
             <!-- Phone Number -->
             <div>
-                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                <input type="tel" id="phone" name="phone" required 
+                <label for="address_phone_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                <input type="tel" id="address_phone_{{form.id}}" name="address[phone]" required 
                     class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+            </div>
+
+
+              <!-- DEFAULT ADDRESS CHECKBOX -->
+              <div class="flex gap-2">
+                {{form.set_as_default_checkbox}}
+                <label for="address_phone_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">Set as Default Address</label>
+                
             </div>
             
             <!-- Submit Button -->
@@ -132,19 +157,26 @@
                     Submit Information
                 </button>
             </div>
-        </form>
+        {% endform %}
     </div>
 </div>
 
     <div class="w-full p-2  mt-5 flex justify-evenly flex-wrap">
         {% for address in customer.addresses %}
              <div class="w-[13em] 
-              h-[15em]  border-[1px] shadow-sm shadow-black rounded-sm flex flex-col justify-between p-1  gap-2">
+                border-[1px] shadow-sm shadow-black rounded-sm flex flex-col justify-between items-center p-1  gap-2" x-data="{address_{{address.id}}: false}">
                 {% if address == customer.default_address %}
                      <div class="p-2 w-full rounded-sm bg-green-500 text-center"> <p>Default Address</p></div>
-
+                     
+                <form action="{{address.url}}" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                </form>
                      {% else %}
                      <div class="p-2 w-full   text-center"> </div>
+                     
+                <form action="{{address.url}}" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                </form>
                 {% endif %}
 
                 <div class="flex justify-center items-center">
@@ -152,12 +184,291 @@
                 </div>
 
                 <div class="w-full flex gap-2 ">
-                    <button class="rounded-sm w-full px-[1.5em] bg-blue-500 hover:bg-white text-white hover:text-blue-500 duration-300 py-1 ">Edit</button>
-                    <button class="w-full border-[1px] border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white duration-300 rounded-sm px-[1.5em] py-1 ">Delete</button>
+                    <button x-on:click="address_{{address.id}}=true" class="rounded-sm w-full px-[1.5em] bg-blue-500 hover:bg-white text-white hover:text-blue-500 duration-300 py-1 ">Edit</button>
+
+                    <button
+                     data-delete-address
+                     data-url="{{address.url}}"
+                    class="w-full border-[1px] border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white duration-300 rounded-sm px-[1.5em] py-1 ">Delete</button>
                 </div>
+
+
+                
+
+                <div x-show="address_{{address.id}}" class="bg-[rgba(0,0,0,0.5)] overflow-y-scroll w-full h-full inset-0 absolute flex items-center justify-center  p-4">
+        
+                <div class="w-full max-w-2xl bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:shadow-lg relative top-[10em]">
+                    <div class="bg-blue-600 p-6 flex justify-between ">
+                        <div>
+                            <h1 class="text-white text-2xl font-bold">Edit Address</h1>
+                        <p class="text-blue-100 mt-2">Please fill out all the required fields</p>
+                        </div>
+                        
+            
+                        <div x-on:click="address_{{address.id}}=false" class="relative right-[1em] top-[1em]">{% render 'cross-arrow' %}</div>
+                    </div>
+                    
+                    {% form 'customer_address' , address , class:'py-[2em] px-[2em] flex flex-col gap-[1em]' %}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- First Name -->
+                            <div>
+                                <label for="address_fname_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                                <input type="text" id="address_fname_{{form.id}}" name="address[first_name]"
+                                 value="{{form.first_name}}"
+                                 required 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                            </div>
+                            
+                            <!-- Last Name -->
+                            <div>
+                                <label for="address_lname_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                                <input type="text" id="address_lname_{{form.id}}" name="address[last_name]" required
+                                   value="{{form.last_name}}" 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                            </div>
+                        </div>
+                        
+                        <!-- Address 1 -->
+                        <div>
+                            <label for="address_address1_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">Address Line 1</label>
+                            <input type="text" id="address_address1_{{form.id}}" name="address[address1]"
+                            value="{{form.address1}}" 
+                            required 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                        </div>
+                        
+                        <!-- Address 2 -->
+                        <div>
+                            <label for="address_address2_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">Address Line 2 (Optional)</label>
+                            <input type="text" id="address_address2_{{form.id}}" name="address[address2]" 
+                                value="{{form.address2}}"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                        </div>
+                        
+                        <!-- Company -->
+                        <div>
+                            <label for="address_company_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">Company (Optional)</label>
+                            <input type="text" id="address_company_{{form.id}}" name="address[company]" 
+                                value="{{form.company}}"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- City -->
+                            <div>
+                                <label for="address_city_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">City</label>
+                                <input type="text" id="address_city_{{form.id}}" name="address[city]"
+                                value="{{form.city}}" 
+                                required 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                            </div>
+                            
+                            <!-- Zip/Postal Code -->
+                            <div>
+                                <label for="address_zip_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">Zip/Postal Code</label>
+                                <input type="text"
+                                value="{{form.zip}}" 
+                                id="address_zip_{{form.id}}" name="address[zip]" required 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Country -->
+                            <div>
+                                <label for="address_country_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">Country</label>
+                                <select id="address_country_{{form.id}}" name="address[country]" 
+                                data-country-selector
+                                data-id="{{form.id}}"
+                                required 
+                                    value="{{form.country}}"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white">
+            
+                                    {{all_country_option_tags}}
+                                    {% comment %} <option value="" disabled selected>Select a country</option>
+                                    <option value="US">United States</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="FR">France</option>
+                                    <option value="JP">Japan</option>
+                                    <option value="CN">China</option>
+                                    <option value="IN">India</option>
+                                    <option value="BR">Brazil</option> {% endcomment %}
+                                </select>
+                            </div>
+                            
+                            <!-- Province/State -->
+                            <div>
+                                <label for="address_province_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">Province/State</label>
+                                <select id="address_province_{{form.id}}" name="address[province]" required 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white">
+                                    {% comment %} <option value="" disabled selected>Select a province/state</option>
+                                    <!-- US States -->
+                                    <option value="AL">Alabama</option>
+                                    <option value="AK">Alaska</option>
+                                    <option value="AZ">Arizona</option>
+                                    <option value="CA">California</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="NY">New York</option>
+                                    <option value="TX">Texas</option>
+                                    <!-- Canadian Provinces -->
+                                    <option value="AB">Alberta</option>
+                                    <option value="BC">British Columbia</option>
+                                    <option value="ON">Ontario</option>
+                                    <option value="QC">Quebec</option> {% endcomment %}
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Phone Number -->
+                        <div>
+                            <label for="address_phone_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                            <input type="tel" id="address_phone_{{form.id}}" name="address[phone]" required 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                        </div>
+
+
+                        <!-- DEFAULT ADDRESS CHECKBOX -->
+                        <div class="flex gap-2">
+                            {{form.set_as_default_checkbox}}
+                            <label for="address_phone_{{form.id}}" class="block text-sm font-medium text-gray-700 mb-1">Set as Default Address</label>
+                            
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <div class="pt-4">
+                            <button type="submit" 
+                                class="w-full bg-blue-600 text-white py-3 px-6 rounded-md font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transform hover:-translate-y-0.5 transition-all duration-150">
+                                Edit Address
+                            </button>
+                        </div>
+                    {% endform %}
+                </div>
+            </div>
+                
               </div>
         {% endfor %}
     </div>
   
 
 </div>
+
+
+
+
+<script>
+    class customerAddress{
+         constructor(){
+
+            this.initAddress();
+            this.custAddrSelector();
+            this.delAddress();
+         }
+
+         delAddress(){
+              const delBtn = document.querySelectorAll('button[data-delete-address]');
+
+              delBtn.forEach(eve=>{
+                eve.addEventListener('click',function(){
+                  let url = this.dataset.url;
+
+                  if(window.confirm("Do You relly want to delete this Address"))
+                  document.querySelector(`form[action="${url}"]`).submit();
+                  
+
+                })
+              })
+         }
+
+         initAddress(){
+            const select = document.querySelectorAll("select[data-country-selector]");
+
+            if(select.length < 1) return;
+
+            select.forEach(sel =>{
+                let selectedCountry = this.getSelectedCountry(sel);
+
+                if(!selectedCountry) return ;
+
+                let prov = selectedCountry.dataset.provinces;
+                let arrayProv = JSON.parse(prov);
+
+
+                let provinceSelector = document.querySelector(`#address_province_${sel.dataset.id}`);
+
+                if(arrayProv.length < 1){
+                    provinceSelector.setAttribute('disabled','disabled');
+                }else{
+                    provinceSelector.removeAttribute('disabled')
+                }
+
+                provinceSelector.innerHTML = '';
+                var options = '';
+
+                for(let i = 0 ; i<arrayProv.length;i++){
+                      if(arrayProv[i][0]=== provinceSelector.getAttribute('value')){
+                        options += `<option value="${arrayProv[i][0]}" selected>${arrayProv[i][0]}</option>`;
+                      }else{
+                        options += `<option value="${arrayProv[i][0]}" >${arrayProv[i][0]}</option>`; 
+                      }
+                }
+
+                provinceSelector.innerHTML = options;
+            })
+            
+         }
+
+         getSelectedCountry(country){
+            let option,selOption;
+             for(let i=0;i<country.options.length; i++){
+                 option = country.options[i];
+
+
+                 if(option.value == country.getAttribute('value')){
+                      selOption = option;
+                      selOption.setAttribute('selected','selected');
+                      break;
+                 }
+             }
+             return selOption;
+         }
+
+         custAddrSelector(){
+            const addresses = document.querySelectorAll("select[data-country-selector]");
+
+            if(addresses.length < 1) return;
+
+            addresses.forEach(opt=>{
+                opt.addEventListener("change",function(e){
+                    let provinces = this.options[this.selectedIndex].dataset.provinces;
+
+                    let provArray = JSON.parse(provinces);
+                    let provSelector = document.querySelector(`#address_province_${this.dataset.id}`);
+
+
+
+                    if(provArray < 1){
+                        provSelector.setAttribute('disabled','disabled');
+                    }else{
+                        provSelector.removeAttribute('disabled');
+                    }
+
+                    provSelector.innerHTML = '';
+                    let options;
+
+                    for(let i = 0;i<provArray.length; i++){
+                        options += `<option value="${provArray[i][0]}">${provArray[i][0]}</option>`
+                    }
+
+                    provSelector.innerHTML = options;
+                    
+                })
+            })
+         }
+    }
+
+
+    const customerAddrForm = new customerAddress();
+</script>
