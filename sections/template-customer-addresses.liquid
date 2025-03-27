@@ -1,16 +1,16 @@
-<div x-cloak class="max-w-[70%] p-2 mx-auto" x-data="{form:false}">
-    <div class="w-full flex justify-between border-b-[1px] py-4">
-        <a class="px-[1em] py-0.5 bg-blue-500 text-white rounded-sm hover:bg-white flex justify-center items-center hover:text-blue-500 duration-300" href="{{routes.account_url}}">Back to Account</a>
+<div x-cloak class="w-[90%] md:max-w-[70%] p-2 mx-auto" x-data="{form:false}">
+    <div class="w-full flex justify-between items-center border-b-[1px] py-4">
+        <a class="sm:p-[0.5em] sm:px-[1em] sm:py-[0.5em] bg-blue-500 text-white rounded-sm hover:bg-white flex justify-center items-center hover:text-blue-500 p-[0.7em] text-[0.6em] duration-300" href="{{routes.account_url}}">Back to Account</a>
 
-  <p class="text-2xl font-semibold" >Addresses</p>
+  <p class="sm:text-2xl text-[1em] font-semibold" >Addresses</p>
 
 
-  <button x-on:click="form=true" class="px-[1em]  bg-blue-500 text-white rounded-sm hover:bg-white hover:text-blue-500 duration-300 cursor-pointer py-4" >Create New Address</button>
+  <button x-on:click="form=true" class="sm:px-[1em]  bg-blue-500 text-white rounded-sm hover:bg-white hover:text-blue-500 duration-300 cursor-pointer p-[0.7em] text-[0.6em]  sm:py-[0.5em]" >Create New Address</button>
     </div>
 
     <div x-show="form" class="bg-[rgba(0,0,0,0.5)] overflow-y-scroll w-full h-full inset-0 absolute flex items-center justify-center  p-4">
         
-    <div class="w-full max-w-2xl bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:shadow-lg relative top-[10em]">
+    <div class="w-full max-w-2xl bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:shadow-lg relative sm:top-[10em] top-[15em]">
         <div class="bg-blue-600 p-6 flex justify-between ">
             <div>
                 <h1 class="text-white text-2xl font-bold">Address Information</h1>
@@ -197,7 +197,7 @@
 
                 <div x-show="address_{{address.id}}" class="bg-[rgba(0,0,0,0.5)] overflow-y-scroll w-full h-full inset-0 absolute flex items-center justify-center  p-4">
         
-                <div class="w-full max-w-2xl bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:shadow-lg relative top-[10em]">
+                <div class="w-full max-w-2xl bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:shadow-lg relative top-[15em] sm:top-[10em]">
                     <div class="bg-blue-600 p-6 flex justify-between ">
                         <div>
                             <h1 class="text-white text-2xl font-bold">Edit Address</h1>

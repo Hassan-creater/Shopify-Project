@@ -1,11 +1,11 @@
-<div class="w-[17em] bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col group">
+<div class="w-[20em] sm:w-[17em] bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col group">
         {% if product.featured_image %}
           <div class="relative h-[15em] w-full overflow-hidden"> 
             <a href="{{product.url}}">
                 <img 
               src="{{ product.featured_image | img_url: '500x500' }}" 
               alt="{{ product.featured_image.alt }}" 
-              class="w-full h-full group-hover:scale-[1.1] duration-300 object-contain p-2"
+              class="w-full h-full group-hover:scale-[1.1] duration-300 object-center object-cover p-2"
               width=""
               height=""
               loading="lazy"

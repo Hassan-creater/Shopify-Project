@@ -1,9 +1,9 @@
 <div class="w-full p-4  mt-4">
   <h1 class="text-center text-2xl font-semibold">{{ section.settings.title }}</h1>
-  <div class="w-[80%] p-2 mx-auto  mt-2 flex justify-center items-center flex-wrap gap-4">
+  <div class="w-[80%] p-2 mx-auto  mt-2 flex justify-center items-center flex-wrap gap-4 ">
 
       {% for collection in collections %}
-        <div class="w-[30%] p-2 bg-slate-200 rounded-sm hover:shadow-md hover:shadow-black hover:scale-[1.02] duration-500">
+        <div class="w-[22em] p-2 bg-slate-200 rounded-sm hover:shadow-md hover:shadow-black hover:scale-[1.02] duration-500">
             {% if collection.all_products_count > 0 %}
                 <a href="{{collection.url}}">
                   <div class="w-full h-[20em] ">

@@ -1,7 +1,7 @@
-<div class="mt-3 w-[90%] mx-auto p-2">
+<div class="mt-3 w-full sm:w-[90%] mx-auto p-2">
   
   <h1 class="text-center text-2xl mb-2">Search Results</h1>
-    <form class="w-[40%] mx-auto" action="{{routes.search_url}}" method="get">
+    <form class="w-full  sm:w-[40%] mx-auto" action="{{routes.search_url}}" method="get">
         <div class="relative flex items-center">
           <!-- Search Input -->
           <input
@@ -32,9 +32,9 @@
         {% if search.performed %}
             {% if search.results.size > 0 %}
                 {% paginate search.results by section.settings.number %}
-                    <div class="w-[80%] mx-auto flex gap-3 justify-center py-10 flex-wrap">
+                    <div class= "w-full  md:w-[90%] mx-auto flex gap-3 justify-center py-10 flex-wrap">
                         {% for item in search.results %}
-                            <div></div>
+                            
                              {% case item.object_type %}
                                 {% when "product" %}
                                      {% render 'product-card', product : item  %}

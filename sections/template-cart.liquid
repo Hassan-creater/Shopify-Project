@@ -1,6 +1,6 @@
 <div>
   {% if cart.item_count > 0 %}
-    <div class="w-[60%] border-b-[1px] border-black p-2 mx-auto mt-4 flex justify-between items-center">
+    <div class="w-[95%] lg:w-[60%] border-b-[1px] border-black p-2 mx-auto mt-4 flex justify-between items-center">
       <p class="text-[1.2em]">Your Cart</p>
       <a class="px-4 py-2 bg-blue-500 text-white hover:bg-white hover:text-blue-500  duration-300 rounded-sm " href="{{routes.all_products_collection_url}}">Continue Shopping</a>
     </div>
@@ -9,22 +9,22 @@
       action="{{routes.cart_url}}"
       method="POST"
       novalidate
-      class=" flex justify-evenly items-center ">
-      <div class="container max-w-[60%] h-[25.5em]  mt-3 ml-10 overflow-x-hidden overflow-y-scroll scrollbar hide_scrollbar">
-        <div class="bg-white rounded-lg shadow overflow-hidden ">
-          <table class="min-w-full divide-y divide-gray-200">
+      class="  flex flex-col lg:flex-row justify-center sm:justify-evenly items-center ">
+      <div class="container w-full  lg:max-w-[60%] lg:h-[25.5em]  mt-3 sm:ml-10 overflow-x-hidden overflow-y-scroll scrollbar hide_scrollbar">
+        <div class="  rounded-lg shadow overflow-hidden ">
+          <table class="w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
               <tr>
-                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th class="lg:px-6 lg:py-3 p-1 text-center text-xs font-[0.6em] text-gray-500 uppercase tracking-wider">
                   Products
                 </th>
-                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th class="lg:px-6 lg:py-3 p-1 text-center text-xs font-[0.7em] text-gray-500 uppercase tracking-wider">
                   Quantity
                 </th>
-                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th class="lg:px-6 lg:py-3 p-1 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Total Price
                 </th>
-                <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <th class="lg:px-6 lg:py-3 p-1 text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
                   Action
                 </th>
               </tr>
@@ -33,13 +33,13 @@
               {% for item in cart.items %}
 
                 <tr class="hover:bg-gray-50">
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-center items-center gap-2 flex-col">
+                  <td class="lg:px-6 lg:py-4 p-1 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-center items-center gap-2 flex-col">
                     <div>
                       {% if item.image %}
 
 
                         <img
-                          class="w-14 h-14 object-cover border"
+                          class="lg:w-14 lg:h-14 w-10 h-10 object-cover border"
                           src="{{item.image |  img_url: 'small'}}"
                           alt="{{item.title |  escape}}"
                           width=""
@@ -50,30 +50,30 @@
                     </div>
 
 
-                    <div class="flex flex-col gap-1">
+                    <div class="flex flex-col gap-1 text-[0.6em] lg:text-[1em]">
                       <a href="{{item.url}}">{{ item.product.title | truncatewords: 5 }}</a>
-                      <span class="text-sm text-gray-400 leading-1">{{ item.variant.title }}</span>
+                      <span class="lg:text-sm text-[0.9em] text-gray-400 leading-1">{{ item.variant.title }}</span>
 
 
                     </div>
                   </td>
 
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                  <td class="lg:px-6 lg:py-4 p-1 whitespace-nowrap text-sm text-gray-500 text-center">
                     <input
                       type="number"
                       name="updates[]"
                       value="{{item.quantity}}"
                       id="update_{{forloop.index}}"
-                      class="border p-2 w-[5em] rounded-sm border-blue-500 focus:outline-none"
+                      class="border p-2 w-[3em] lg:w-[5em] rounded-sm border-blue-500 focus:outline-none"
                       min="1">
                   </td>
 
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold text-center">
+                  <td class="lg:px-6 lg:py-4 whitespace-nowrap text-[0.8em] lg:text-sm text-gray-900 font-semibold text-center">
                     {{ item.final_line_price | money }}
                   </td>
 
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold flex justify-center items-center">
-                    <a class=" px-7 py-2 bg-red-500 rounded-sm text-white hover:text-red-500 hover:bg-white duration-300" href="{{routes.cart_change_url}}?line={{forloop.index}}&quantity=0">Remove item</a>
+                  <td class="lg:px-6 lg:py-4 whitespace-nowrap text-sm text-gray-900 font-semibold flex justify-center items-center">
+                    <a class=" lg:px-7 lg:py-2 p-1 text-[0.8em] bg-red-500 rounded-sm text-white hover:text-red-500 hover:bg-white duration-300" href="{{routes.cart_change_url}}?line={{forloop.index}}&quantity=0">Remove item</a>
                   </td>
                 </tr>
               {% endfor %}
@@ -87,7 +87,7 @@
         </div>
       </div>
 
-      <div class="w-[25%] h-[25em] p-3  flex flex-col justify-end items-center gap-2">
+      <div class=" lg:w-[25%] h-[25em] p-3  flex flex-col justify-center lg:justify-end items-center gap-2">
         {% for block in section.blocks %}
           {% case block.type %}
             {% when "subtotal" %}

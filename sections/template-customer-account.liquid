@@ -1,7 +1,7 @@
-<div class="max-w-full p-3  mx-auto flex justify-between items-center ">
-  <div class="w-[30%] h-[30.5em] p-1 rounded-sm border-[1px] sticky top-4">
+<div class="max-w-full p-3  mx-auto flex flex-col sm:flex-row  justify-between gap-4 items-center ">
+  <div class="w-full sm:w-[30%] min-h-[10em] sm:h-[30.5em] p-1 rounded-sm border-[1px] sm:sticky sm:top-4">
     <h2 class="text-center text-2xl">Account Details</h2>
-    <div class="w-full h-[28em]  p-3">
+    <div class="w-full h-full p-3">
       
             {{customer.default_address |  format_address}}
         
@@ -10,14 +10,14 @@
         
     </div>
   </div>
-  <div class="w-[69%] h-[30.5em] p-1 flex flex-col gap-5  rounded-sm border-[1px]">
+  <div class="w-full min-h-[20em] sm:w-[69%] sm:h-[30.5em]  p-1 flex flex-col gap-5  rounded-sm border-[1px]">
     <h2 class="text-center text-2xl font-bold">Order History</h2>
-    <div class="w-full h-[29em] flex gap-5 flex-wrap overflow-y-scroll p-2  hide_product_scrollbar">
+    <div class="w-full h-[80%] sm:h-[29em] flex gap-5 flex-wrap overflow-y-scroll p-2  hide_product_scrollbar">
       {% assign number_of_orders = customer.orders | size %}
       {% if number_of_orders > 0 %}
 
         {% for order in customer.orders %}
-          <div class="w-[30%] h-[20em]  rounded-sm overflow-hidden shadow-sm shadow-black">
+          <div class="w-[20em] h-[20em]  rounded-sm overflow-hidden shadow-sm shadow-black">
             <div class="w-full  h-[80%] overflow-hidden">
               {% if order.line_items.first.image %}
                 <img
@@ -49,7 +49,7 @@
         {% endfor %}
 
       {% else %}
-        <p class="text-center font-semibold underline text-[1.3em] my-auto absolute top-[50%] right-[25%]">You don't have order History</p>
+        <p class="text-center font-semibold underline text-[1.3em] my-auto mx-auto">You don't have order History</p>
       {% endif %}
     </div>
 
