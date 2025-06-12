@@ -1,21 +1,38 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "sections":{
-        "template":{
-            "type" : "template-cart",
-            "blocks": {
-                "subtotal":{
-                    "type" : "subtotal"
-                },
-                "update-button":{
-                    "type" : "update_button"
-                },
-                "checkout-button":{
-                    "type" : "checkout_button"
-                }
-            },
-            "block_order": ["subtotal","update-button","checkout-button"]
-        }
-        
+  "sections": {
+    "template": {
+      "type": "template-cart",
+      "settings": {}
     },
-    "order" : ["template"]
+    "1749710703dfc5a0e1": {
+      "type": "apps",
+      "blocks": {
+        "pc_product_options_cart_page_customizer_CwmzUX": {
+          "type": "shopify://apps/pc-product-options/blocks/cart-page-customizer/6857ca6c-35eb-4b6f-9d58-a039f31d9406",
+          "settings": {
+            "heading": "Product Customizer - Cart Page",
+            "pc_cart_advanced_custom_css": "",
+            "pc_cart_advanced_custom_js": ""
+          }
+        }
+      },
+      "block_order": [
+        "pc_product_options_cart_page_customizer_CwmzUX"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "template",
+    "1749710703dfc5a0e1"
+  ]
 }
